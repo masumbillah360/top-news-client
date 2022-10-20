@@ -1,11 +1,52 @@
-import React from 'react';
+import React from "react";
+import ListGroup from "react-bootstrap/ListGroup";
+import { Link } from "react-router-dom";
+
+import {
+  FaFacebook,
+  FaGoogle,
+  FaTwitter,
+  FaWhatsapp,
+  FaYoutube,
+} from "react-icons/fa";
 
 const RightNav = () => {
-    return (
-        <div>
-            <h1>Right nav will be here</h1>
-        </div>
-    );
+  return (
+    <div>
+      <button className="btn btn-danger w-100 my-2">
+        <FaGoogle></FaGoogle> Sign In With Google
+      </button>
+      <button className="btn btn-primary w-100 my-2">
+        <FaFacebook></FaFacebook> Sign In With Facebook
+      </button>
+
+      <div>
+        <h4>Followed Us On</h4>
+        <ListGroup>
+          <ListGroup.Item>
+            <Link className="nav-link text-primary">
+              <FaFacebook></FaFacebook> Facebook
+            </Link>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Link className="nav-link text-info">
+              <FaTwitter></FaTwitter> Twitter
+            </Link>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Link className="nav-link text-danger">
+              <FaYoutube></FaYoutube> YouTube
+            </Link>{" "}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Link className="nav-link text-success">
+              <FaWhatsapp></FaWhatsapp> Whatsapp
+            </Link>
+          </ListGroup.Item>
+        </ListGroup>
+      </div>
+    </div>
+  );
 };
 
 export default RightNav;
