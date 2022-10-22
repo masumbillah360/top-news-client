@@ -1,12 +1,14 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
-import Image from "react-bootstrap/Image";
-import { FaBookmark, FaEye, FaShareAlt, FaStar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { Card, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { FaBookmark, FaShareAlt, FaStar, FaEye } from 'react-icons/fa';
 
-const NewsSummery = ({ news }) => {
-  console.log(news);
-  const { _id,title, details, image_url, total_view, rating, author } = news;
+const ViewNews = () => {
+
+    const news = useLoaderData();
+    console.log(news);
+    const { category_id,title, details, image_url, total_view, rating, author } = news;
   return (
     <Card className="mb-4">
       <Card.Header className="d-flex justify-content-between align-items-center">
@@ -32,14 +34,8 @@ const NewsSummery = ({ news }) => {
         <Card.Title>{title}</Card.Title>
         <Card.Img variant="top" src={image_url} />
         <Card.Text>
-          {details.length > 250 ? (
-            <>
-              {details.slice(0, 250) + "..."}
-              <Link to={`/news/${_id}`} className="btn btn-danger btn-sm">Reed More</Link>
-            </>
-          ) : (
-            details
-          )}
+          {details}
+          <Link to={`/category/${category_id}`}>More News</Link>
         </Card.Text>
       </Card.Body>
       <Card.Footer className='d-flex justify-content-between align-items-center'>
@@ -56,4 +52,4 @@ const NewsSummery = ({ news }) => {
   );
 };
 
-export default NewsSummery;
+export default ViewNews;

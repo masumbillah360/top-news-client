@@ -6,6 +6,9 @@ import Errorpage from "./Pages/Erropage/Errorpage";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import News from "./Pages/News/News";
+import Registration from "./Pages/Registration/Registration";
+import ViewNews from "./Pages/ViewNews/ViewNews";
+import PrivateRout from "./PrivateRout/PrivateRout";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,14 +19,28 @@ function App() {
       children: [
         { path: "/", element: <Home></Home> },
         { path: "/home", element: <Home></Home> },
-        { path: "/news", element: <News></News> },
-        { path: "/category/:id",
-        loader: ({params})=> fetch(`http://localhost:5000/cat/${params.id}`),
-        element: <News></News> },
+        {
+          path: "/news/:id",
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/news/${params.id}`),
+          element: (
+            <PrivateRout>
+              <ViewNews></ViewNews>
+            </PrivateRout>
+          ),
+        },
+        {
+          path: "/category/:id",
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/cat/${params.id}`),
+          element: <News></News>,
+        },
         { path: "/about", element: <About></About> },
+        { path: "/registration", element: <Registration></Registration> },
+        { path: "/login", element: <Login></Login> },
       ],
     },
-    {path: '/login', element: <Login></Login>},
+    { path: "*", element: <div>not found</div> },
   ]);
   return (
     <div>

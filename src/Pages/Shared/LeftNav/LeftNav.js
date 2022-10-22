@@ -11,7 +11,7 @@ const LeftNav = () => {
     return (
         <div>
             {
-                cat.map(c=> <div className='my-2'>
+                cat.map(c=> <div key={c.id} className='my-2'>
                     <Link to={`/category/${c.id}`} className='text-decoration-none'>{c.name}</Link>
                 </div> )
             }

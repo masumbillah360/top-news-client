@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
+
 
 import {
   FaFacebook,
@@ -9,11 +10,22 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const RightNav = () => {
+  const provider = new GoogleAuthProvider();
+  const {gLogin, setUser} = useContext(AuthContext);
+  const gLoginHandler = ()=>{
+    gLogin(provider)
+    .then(result=>{
+      setUser(result.user);
+    })
+    .catch(err=>console.log(err))
+  }
   return (
     <div>
-      <button className="btn btn-danger w-100 my-2">
+      <button onClick={gLoginHandler} className="btn btn-danger w-100 my-2">
         <FaGoogle></FaGoogle> Sign In With Google
       </button>
       <button className="btn btn-primary w-100 my-2">
