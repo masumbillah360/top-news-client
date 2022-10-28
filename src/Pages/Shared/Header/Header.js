@@ -15,7 +15,7 @@ const Header = () => {
   })
     .catch((err)=>{console.log(err)})
   };
-  console.log(user.uid);
+  console.log(user?.uid);
   return (
     <Navbar sticky="top" bg="light" expand="lg">
       <Container>

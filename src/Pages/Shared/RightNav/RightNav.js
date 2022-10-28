@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import FaltuMap from "../../Map/Map";
 
 const RightNav = () => {
   const provider = new GoogleAuthProvider();
@@ -56,6 +57,9 @@ const RightNav = () => {
             </Link>
           </ListGroup.Item>
         </ListGroup>
+      </div>
+      <div className="mt-2">
+      <FaltuMap></FaltuMap>
       </div>
     </div>
   );
